@@ -1,0 +1,2037 @@
+/* ==========================================================================
+   NAYARA UI SYSTEM — shared typography, spacing, controls and responsive shell
+   Applies to authenticated ERP pages and the Super Admin platform.
+   ========================================================================== */
+
+:root {
+    /* NAYARA Official Brand Tokens (Restored) */
+    --nayara-deep: #520C31;
+    --nayara-burgundy: #68113F;
+    --nayara-primary: #8E1B5C;
+    --nayara-primary-medium: #701D49;
+    --nayara-sidebar-active: #7F345C;
+
+    --nayara-pink: #D96B9B;
+    --nayara-blush: #F7E6EE;
+    --nayara-border: #E1CFD9;
+
+    --nayara-background: #FFF9FB;
+    --nayara-white: #FFFFFF;
+
+    /* Semantic & Functional Aliases */
+    --nayara-brand: var(--nayara-primary);
+    --nayara-brand-deep: var(--nayara-burgundy);
+    --nayara-brand-hover: var(--nayara-primary-medium);
+    --nayara-accent: #ED3500;
+    --nayara-rose: var(--nayara-blush);
+    --nayara-rose-soft: var(--nayara-background);
+    --nayara-page: var(--nayara-background);
+    --nayara-surface: var(--nayara-white);
+    --nayara-ink: #172B4D;
+    --nayara-muted: #64748B;
+    --nayara-success: #087A55;
+    --nayara-warning: #A65B0A;
+    --nayara-danger: #B4234D;
+    --n-sidebar-w: 236px;
+    --n-radius: 12px;
+}
+
+html,
+body {
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--nayara-page);
+    color: var(--nayara-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Shared ERP content shell: one page scrollbar, fixed sidebar, no nested
+   vertical scrolling inside the main dashboard content.
+   -------------------------------------------------------------------------- */
+
+.nayara-erp-sidebar {
+    width: 256px;
+    background: linear-gradient(166deg, #691b3d 0%, #4a132e 49%, #260b20 100%) !important;
+    border-right: 1px solid rgba(255,255,255,.12) !important;
+    box-shadow: 4px 0 22px rgba(142,27,92,.10);
+    position: relative;
+}
+
+.nayara-erp-sidebar .nayara-sidebar-brand {
+    background: rgba(55, 5, 30, .22) !important;
+}
+
+.nayara-sidebar-watermark-star {
+    position: absolute !important;
+    bottom: 24px !important;
+    right: 12px !important;
+    font-size: 104px !important;
+    font-family: Georgia, serif !important;
+    line-height: 1 !important;
+    color: rgba(255, 216, 229, 0.065) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    z-index: 0 !important;
+}
+
+.nayara-erp-sidebar nav {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.24) transparent;
+}
+
+.nayara-erp-sidebar nav a {
+    min-height: 36px;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-family: inherit !important;
+    font-size: 12.5px !important;
+    line-height: 1.35;
+}
+
+.nayara-erp-sidebar nav a.active,
+.nayara-erp-sidebar nav a[aria-current="page"] {
+    background: rgba(255,255,255,.18) !important;
+    color: #FFFFFF !important;
+    box-shadow: inset 3px 0 0 var(--nayara-accent);
+}
+
+.nayara-erp-sidebar nav a svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+}
+
+#main-content {
+    width: 100%;
+    max-width: 1540px;
+    margin: 0 auto;
+    padding: 20px 24px 32px;
+    color: var(--nayara-ink);
+    font-family: inherit !important;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#main-content > .max-w-7xl {
+    width: 100%;
+    max-width: 1480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#main-content h1,
+.n-content h1 {
+    font-family: inherit !important;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -.025em;
+    color: var(--nayara-ink);
+}
+
+/* --------------------------------------------------------------------------
+   NAYARA HERO BANNER: Ensure pure white heading, soft pink/white description,
+   and prevent navy text override inside dark burgundy heroes across all roles.
+   -------------------------------------------------------------------------- */
+#main-content .nayara-dashboard-hero h1,
+#main-content .nayara-dashboard-hero h2,
+#main-content [data-nayara-hero] h1,
+#main-content [data-nayara-hero] h2,
+.nayara-dashboard-hero .nayara-hero-title,
+.nayara-hero-title {
+    color: #FFFFFF !important;
+    font-size: 25px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.025em !important;
+}
+
+#main-content .nayara-dashboard-hero p,
+#main-content [data-nayara-hero] p,
+.nayara-dashboard-hero .nayara-hero-subtitle,
+.nayara-hero-subtitle {
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+}
+
+#main-content .nayara-dashboard-hero .nayara-hero-badge,
+.nayara-dashboard-hero .nayara-hero-badge {
+    color: #FFFFFF !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+#main-content .nayara-dashboard-hero .nayara-hero-action,
+.nayara-dashboard-hero .nayara-hero-action {
+    background-color: #FFFFFF !important;
+    color: #68113F !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+}
+#main-content .nayara-dashboard-hero .nayara-hero-action:hover,
+.nayara-dashboard-hero .nayara-hero-action:hover {
+    background-color: #F7E6EE !important;
+    color: #520C31 !important;
+}
+
+/* --------------------------------------------------------------------------
+   NAYARA STANDARDIZED PAGE HEADER (COMPACT PROFESSIONAL):
+   Design from Gambar 1 (White background, soft pink border, left accent bar,
+   soft pink icon box with burgundy icon, navy title, bluish-gray subtitle,
+   burgundy action button).
+   Compact proportions: Target height 112-128px, 24-28px horizontal padding,
+   20-24px vertical padding, 44-48px icon box, 14-16px gap, 38-42px action button.
+   -------------------------------------------------------------------------- */
+.nayara-feature-header,
+.nayara-page-header {
+    background-color: #FFFFFF !important;
+    border: 1px solid #FFD8D8 !important;
+    border-left: 4px solid #8E1B5C !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+    box-shadow: 0 1px 3px rgba(142, 27, 92, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease-out;
+}
+
+@media (min-width: 768px) {
+    .nayara-feature-header,
+    .nayara-page-header {
+        min-height: 116px;
+        padding: 22px 28px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .nayara-feature-header,
+    .nayara-page-header {
+        min-height: 96px;
+        padding: 16px 20px !important;
+    }
+}
+
+.nayara-feature-header h1,
+.nayara-page-header h1 {
+    font-size: 23px !important;
+    font-weight: 700 !important;
+    color: #172B4D !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+}
+
+.nayara-feature-header p,
+.nayara-page-header p {
+    font-size: 13.5px !important;
+    color: #64748B !important;
+    line-height: 1.5 !important;
+    margin: 3px 0 0 0 !important;
+}
+
+/* Action buttons inside Page Header */
+.nayara-header-actions > a:not([href*="tab="]):not([class*="tab"]),
+.nayara-header-actions > button:not([role="tab"]):not([class*="tab"]),
+.nayara-header-actions .btn-primary,
+.nayara-header-actions .btn-header-action {
+    min-height: 40px !important;
+    height: 40px !important;
+    padding: 8px 18px !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    white-space: nowrap !important;
+}
+
+.nayara-header-actions > a:not([href*="tab="]):not([class*="tab"]) svg,
+.nayara-header-actions > button:not([role="tab"]):not([class*="tab"]) svg {
+    width: 17px !important;
+    height: 17px !important;
+    flex-shrink: 0 !important;
+}
+
+@media (max-width: 640px) {
+    .nayara-header-actions > a:not([href*="tab="]):not([class*="tab"]),
+    .nayara-header-actions > button:not([role="tab"]):not([class*="tab"]) {
+        min-height: 38px !important;
+        height: 38px !important;
+        padding: 7px 16px !important;
+        font-size: 13px !important;
+    }
+}
+
+#main-content h2,
+.n-content h2 {
+    font-family: inherit !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    letter-spacing: -.01em;
+    color: var(--nayara-ink);
+}
+
+#main-content h3,
+.n-content h3 {
+    font-family: inherit !important;
+    font-size: 14px !important;
+    font-weight: 650 !important;
+    line-height: 1.35 !important;
+    color: var(--nayara-ink);
+}
+
+#main-content h4,
+.n-content h4 {
+    font-family: inherit !important;
+    font-size: 13px !important;
+    font-weight: 650 !important;
+    line-height: 1.35 !important;
+}
+
+#main-content p,
+.n-content p {
+    line-height: 1.5;
+}
+
+#main-content :not(code):not(pre),
+.n-content :not(code):not(pre) {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+#main-content code,
+#main-content pre,
+.n-content code,
+.n-content pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+}
+
+
+/* Normalize Tailwind text scales across all authenticated modules. */
+#main-content [class~="text-xs"],
+.n-content [class~="text-xs"] { font-size: 11px !important; }
+
+#main-content [class~="text-sm"],
+.n-content [class~="text-sm"] { font-size: 12.5px !important; }
+
+#main-content [class~="text-base"],
+.n-content [class~="text-base"] { font-size: 13.5px !important; }
+
+#main-content [class~="text-lg"],
+.n-content [class~="text-lg"] { font-size: 15px !important; }
+
+#main-content [class~="text-xl"],
+.n-content [class~="text-xl"] { font-size: 17px !important; }
+
+#main-content [class~="text-2xl"],
+.n-content [class~="text-2xl"] { font-size: 19px !important; }
+
+#main-content [class~="text-3xl"],
+.n-content [class~="text-3xl"] { font-size: 21px !important; }
+
+#main-content [class~="text-4xl"],
+.n-content [class~="text-4xl"] { font-size: 23px !important; }
+
+#main-content [class~="text-5xl"],
+.n-content [class~="text-5xl"] { font-size: 25px !important; }
+
+#main-content [class~="text-6xl"],
+.n-content [class~="text-6xl"] { font-size: 27px !important; }
+
+#main-content [class~="text-7xl"],
+.n-content [class~="text-7xl"] { font-size: 27px !important; }
+
+#main-content [class~="text-8xl"],
+.n-content [class~="text-8xl"],
+#main-content [class~="text-9xl"],
+.n-content [class~="text-9xl"] { font-size: 28px !important; }
+
+#main-content [class*="text-[32px]"],
+.n-content [class*="text-[32px]"] { font-size: 22px !important; }
+
+#main-content [class*="text-[30px]"],
+.n-content [class*="text-[30px]"] { font-size: 21px !important; }
+
+#main-content [class*="text-[28px]"],
+.n-content [class*="text-[28px]"] { font-size: 20px !important; }
+
+#main-content [class*="text-[26px]"],
+.n-content [class*="text-[26px]"] { font-size: 19px !important; }
+
+#main-content [class*="text-[25px]"],
+.n-content [class*="text-[25px]"] { font-size: 19px !important; }
+
+#main-content [class*="text-[22px]"],
+.n-content [class*="text-[22px]"] { font-size: 18px !important; }
+
+#main-content [class*="text-[21px]"],
+.n-content [class*="text-[21px]"] { font-size: 17px !important; }
+
+#main-content [class*="text-[20px]"],
+.n-content [class*="text-[20px]"] { font-size: 17px !important; }
+
+#main-content [class*="text-[19px]"],
+.n-content [class*="text-[19px]"] { font-size: 16px !important; }
+
+#main-content [class*="text-[18px]"],
+.n-content [class*="text-[18px]"] { font-size: 15px !important; }
+
+#main-content [class*="text-[17px]"],
+.n-content [class*="text-[17px]"] { font-size: 14px !important; }
+
+#main-content [class*="text-[16px]"],
+.n-content [class*="text-[16px]"] { font-size: 13.5px !important; }
+
+#main-content [class*="text-[15px]"],
+.n-content [class*="text-[15px]"] { font-size: 13px !important; }
+
+#main-content [class*="text-[14px]"],
+.n-content [class*="text-[14px]"] { font-size: 12.5px !important; }
+
+#main-content [class*="text-[13px]"],
+.n-content [class*="text-[13px]"] { font-size: 12.5px !important; }
+
+/* Consistent cards, controls, tables and focus states. */
+#main-content .rounded-xl,
+.n-content .rounded-xl {
+    border-radius: 12px;
+}
+
+#main-content input:not([type="checkbox"]):not([type="radio"]),
+#main-content select,
+#main-content textarea,
+.n-content input:not([type="checkbox"]):not([type="radio"]),
+.n-content select,
+.n-content textarea {
+    font-family: inherit !important;
+    font-size: 13px !important;
+    border-radius: 8px;
+}
+
+#main-content input:not([type="checkbox"]):not([type="radio"]),
+#main-content select,
+.n-content input:not([type="checkbox"]):not([type="radio"]),
+.n-content select {
+    min-height: 36px;
+}
+
+#main-content label,
+.n-content label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #574651;
+}
+
+#main-content button,
+#main-content a[class*="px-"],
+.n-content button,
+.n-content a[class*="px-"] {
+    font-family: inherit !important;
+}
+
+#main-content .btn-primary,
+.n-content .btn-primary {
+    background: var(--nayara-brand) !important;
+    border-color: var(--nayara-brand) !important;
+    color: #FFFFFF !important;
+    font-size: 12.5px !important;
+    font-weight: 650 !important;
+    min-height: 36px;
+}
+
+#main-content .btn-primary:hover,
+.n-content .btn-primary:hover {
+    background: var(--nayara-brand-hover) !important;
+}
+
+#main-content .btn-outline,
+.n-content .btn-outline {
+    border-color: var(--nayara-border) !important;
+    color: var(--nayara-brand) !important;
+    font-size: 12.5px !important;
+    min-height: 36px;
+}
+
+/* --------------------------------------------------------------------------
+   NAYARA AUTHORITATIVE GLOBAL TABLE HEADER (SOFT PINK DESIGN SYSTEM):
+   Background: #F7E4EC
+   Border: #EAD0DC
+   Text: #53677F
+   Font weight: 600-700
+   Padding: 14px 16px (14-18px)
+   -------------------------------------------------------------------------- */
+table thead,
+.n-table thead,
+.data-table thead,
+.n-platform-table thead,
+.n-billing-table thead {
+    background-color: #F7E4EC !important;
+    border-bottom: 1px solid #EAD0DC !important;
+}
+
+table thead tr,
+.n-table thead tr,
+.data-table thead tr,
+.n-platform-table thead tr,
+.n-billing-table thead tr {
+    background-color: #F7E4EC !important;
+    border-bottom: 1px solid #EAD0DC !important;
+}
+
+table thead th,
+table th,
+.n-table thead th,
+.n-table th,
+.data-table th,
+.n-platform-table th,
+.n-billing-table th {
+    background-color: #F7E4EC !important;
+    color: #53677F !important;
+    font-weight: 700 !important;
+    border-bottom: 1px solid #EAD0DC !important;
+    padding: 14px 16px !important;
+    letter-spacing: 0.03em;
+}
+
+table thead th a,
+table thead th span,
+table thead th div,
+.n-table thead th *,
+.data-table thead th *,
+.n-platform-table thead th *,
+.n-billing-table thead th * {
+    color: #53677F !important;
+}
+
+#main-content .data-table,
+.n-content .data-table {
+    font-size: 12.5px !important;
+}
+
+#main-content .data-table th,
+.n-content .data-table th {
+    font-size: 10.5px !important;
+    letter-spacing: .045em;
+}
+
+#main-content .data-table td,
+.n-content .data-table td {
+    font-size: 12px !important;
+}
+
+/* Brand color compatibility for legacy Tailwind classes. */
+#main-content [class~="text-[#8E1B5C]"],
+.n-content [class~="text-[#8E1B5C]"] {
+    color: var(--nayara-brand) !important;
+}
+
+#main-content [class~="bg-[#8E1B5C]"],
+.n-content [class~="bg-[#8E1B5C]"] {
+    background-color: var(--nayara-brand) !important;
+}
+
+#main-content [class~="border-[#8E1B5C]"],
+.n-content [class~="border-[#8E1B5C]"] {
+    border-color: var(--nayara-brand) !important;
+}
+
+#main-content [class~="bg-[#6B1242]"],
+.n-content [class~="bg-[#6B1242]"] {
+    background-color: var(--nayara-brand-deep) !important;
+}
+
+#main-content [class~="text-[#ED3500]"],
+.n-content [class~="text-[#ED3500]"] {
+    color: var(--nayara-accent) !important;
+}
+
+#main-content [class~="bg-[#ED3500]"],
+.n-content [class~="bg-[#ED3500]"] {
+    background-color: var(--nayara-accent) !important;
+}
+
+#main-content [class~="border-[#FFD8D8]"],
+.n-content [class~="border-[#FFD8D8]"] {
+    border-color: var(--nayara-border) !important;
+}
+
+#main-content [class~="bg-[#FFD8D8]"],
+.n-content [class~="bg-[#FFD8D8]"] {
+    background-color: var(--nayara-rose) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Super Admin shell
+   -------------------------------------------------------------------------- */
+
+.n-sidebar {
+    width: var(--n-sidebar-w) !important;
+    background: linear-gradient(165deg, #8E1B5C 0%, #6B1242 100%) !important;
+    border-right-color: rgba(255,255,255,.12) !important;
+    box-shadow: 4px 0 22px rgba(142,27,92,.10) !important;
+}
+
+.n-brand {
+    height: 58px !important;
+    min-height: 58px !important;
+    gap: 10px;
+}
+
+.n-brand-logo {
+    width: 32px !important;
+    height: 32px !important;
+    background: linear-gradient(135deg, #A52B66, #5A0C34) !important;
+    border-radius: 9px !important;
+    font-family: inherit !important;
+}
+
+.n-brand-title {
+    font-family: inherit !important;
+    font-size: 16px !important;
+    letter-spacing: .08em !important;
+}
+
+.n-brand-subtitle {
+    font-size: 9px !important;
+    letter-spacing: .09em !important;
+}
+
+.n-platform-sidebar-avatar {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: grid;
+    place-items: center;
+    color: var(--nayara-brand);
+    background: #FFFFFF;
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 10px;
+}
+
+.n-platform-sidebar-avatar svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-nav-caption {
+    font-size: 9.5px !important;
+    letter-spacing: .09em !important;
+}
+
+.n-nav-link {
+    min-height: 35px !important;
+    height: 35px !important;
+    font-size: 12.5px !important;
+    border-radius: 8px !important;
+}
+
+.n-nav-link.is-active {
+    background: rgba(255,255,255,.18) !important;
+    border-left: 3px solid #F0A0BF !important;
+    box-shadow: none !important;
+}
+
+.n-nav-link.is-active .n-icon {
+    color: #FFD5E5 !important;
+}
+
+.n-sidebar-foot {
+    height: 48px !important;
+    min-height: 48px !important;
+}
+
+.n-logout-btn {
+    min-height: 36px !important;
+    height: 36px !important;
+    font-size: 12px !important;
+}
+
+.n-main-wrap {
+    margin-left: var(--n-sidebar-w) !important;
+    min-height: 100vh;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.n-topbar {
+    height: 56px !important;
+    min-height: 56px !important;
+    padding: 0 22px !important;
+    background: var(--nayara-page) !important;
+    border-bottom-color: var(--nayara-border) !important;
+}
+
+.n-page-title,
+.n-hero-title,
+.n-modal-title {
+    font-family: inherit !important;
+}
+
+.n-content {
+    width: 100% !important;
+    max-width: 1500px !important;
+    min-height: calc(100vh - 56px);
+    margin: 0 auto !important;
+    padding: 20px 24px 32px !important;
+    gap: 16px !important;
+    font-family: inherit !important;
+    font-size: 13px !important;
+    color: var(--nayara-ink);
+}
+
+.n-content [class~="text-[#8E1B5C]"] {
+    color: var(--nayara-brand) !important;
+}
+
+.n-content [class~="bg-[#8E1B5C]"] {
+    background-color: var(--nayara-brand) !important;
+}
+
+.n-content [class~="border-[#8E1B5C]"] {
+    border-color: var(--nayara-brand) !important;
+}
+
+.n-content [class~="bg-[#6B1242]"] {
+    background-color: var(--nayara-brand-deep) !important;
+}
+
+.n-content [class~="text-[#ED3500]"] {
+    color: var(--nayara-accent) !important;
+}
+
+.n-content [class~="bg-[#ED3500]"] {
+    background-color: var(--nayara-accent) !important;
+}
+
+.n-content [class~="border-[#FFD8D8]"] {
+    border-color: var(--nayara-border) !important;
+}
+
+.n-content [class~="bg-[#FFD8D8]"] {
+    background-color: var(--nayara-rose) !important;
+}
+
+/* Shared platform components used by non-dashboard Super Admin pages. */
+.n-header-bar {
+    min-height: 60px !important;
+    padding: 10px 14px !important;
+    border-color: var(--nayara-border) !important;
+    border-radius: 11px !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+}
+
+.n-page-title {
+    color: var(--nayara-ink) !important;
+    font-family: inherit !important;
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+}
+
+.n-page-subtitle {
+    color: var(--nayara-muted) !important;
+    font-size: 11.5px !important;
+}
+
+.n-brand-hero {
+    min-height: 108px !important;
+    max-height: none !important;
+    padding: 16px 20px !important;
+    background: linear-gradient(112deg, #8E1B5C 0%, #6B1242 64%, #4A0E2E 100%) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 5px 16px rgba(142,27,92,.12) !important;
+}
+
+.n-hero-title {
+    font-family: inherit !important;
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+}
+
+.n-hero-desc {
+    font-size: 11.5px !important;
+    line-height: 1.45 !important;
+}
+
+.n-hero-btn {
+    min-height: 34px !important;
+    padding: 7px 11px !important;
+    border-radius: 8px !important;
+    font-size: 11.5px !important;
+}
+
+.n-kpi-card {
+    height: 96px !important;
+    min-height: 90px !important;
+    max-height: 104px !important;
+    padding: 11px 13px !important;
+    border-color: var(--nayara-border) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+
+.n-kpi-label {
+    color: var(--nayara-muted) !important;
+    font-size: 10px !important;
+    letter-spacing: .045em !important;
+}
+
+.n-kpi-value {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -.025em !important;
+}
+
+.n-kpi-icon-wrap {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+}
+
+.n-kpi-icon-wrap .n-icon {
+    width: 17px !important;
+    height: 17px !important;
+}
+
+.n-card {
+    border-color: var(--nayara-border) !important;
+    border-radius: 11px !important;
+    box-shadow: none !important;
+}
+
+.n-card-header {
+    padding: 11px 14px !important;
+    background: #FFFAFC !important;
+    border-bottom-color: var(--nayara-border) !important;
+}
+
+.n-card-title {
+    color: var(--nayara-ink) !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+}
+
+.n-card-subtitle {
+    color: var(--nayara-muted) !important;
+    font-size: 10.5px !important;
+}
+
+.n-secondary-card {
+    height: 72px !important;
+    min-height: 68px !important;
+    max-height: 78px !important;
+    padding: 9px 12px !important;
+    border-color: var(--nayara-border) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+
+.n-secondary-icon {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+}
+
+.n-secondary-value {
+    font-size: 17px !important;
+}
+
+.n-status-pill {
+    padding: 3px 8px !important;
+    font-size: 10px !important;
+}
+
+.n-link-action {
+    font-size: 11px !important;
+    color: var(--nayara-brand) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Super Admin dashboard — compact, aligned, data-first components
+   -------------------------------------------------------------------------- */
+
+.n-platform-page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 1460px;
+    margin: 0 auto;
+    color: var(--nayara-ink);
+    font-family: inherit;
+}
+
+.n-platform-header {
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 8px 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--nayara-border);
+    border-radius: 11px;
+}
+
+.n-platform-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.n-platform-heading-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: grid;
+    place-items: center;
+    color: #FFFFFF;
+    background: var(--nayara-brand);
+    border-radius: 9px;
+}
+
+.n-platform-heading-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-heading h1 {
+    margin: 0;
+    color: var(--nayara-ink);
+    font-size: 20px !important;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.n-platform-heading p {
+    margin: 2px 0 0;
+    color: var(--nayara-muted);
+    font-size: 11.5px;
+}
+
+.n-platform-menu-toggle {
+    display: none;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    place-items: center;
+    border: 1px solid var(--nayara-border);
+    border-radius: 8px;
+    color: var(--nayara-brand);
+    background: #FFFFFF;
+}
+
+.n-platform-menu-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+.n-platform-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.n-platform-icon-action {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    color: var(--nayara-brand);
+    background: #FFFFFF;
+    border: 1px solid var(--nayara-border);
+    border-radius: 9px;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+.n-platform-icon-action:hover {
+    background: var(--nayara-rose);
+    border-color: #D9A9BE;
+}
+
+.n-platform-icon-action svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-profile {
+    position: relative;
+}
+
+.n-platform-profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 0 10px;
+    border: 0;
+    border-left: 1px solid var(--nayara-border);
+    background: transparent;
+    color: var(--nayara-ink);
+    text-align: left;
+}
+
+.n-platform-profile-avatar {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 34px;
+    border-radius: 50%;
+    background: var(--nayara-brand);
+    color: #FFFFFF;
+}
+
+.n-platform-profile-avatar svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-profile-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.n-platform-profile-copy strong {
+    max-width: 180px;
+    overflow: hidden;
+    color: var(--nayara-ink);
+    font-size: 12px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.n-platform-profile-copy small {
+    margin-top: 1px;
+    color: var(--nayara-brand);
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: .08em;
+}
+
+.n-platform-chevron {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--nayara-muted);
+    stroke-width: 1.8;
+}
+
+.n-platform-profile-menu {
+    position: absolute;
+    z-index: 80;
+    top: calc(100% + 9px);
+    right: 0;
+    width: 220px;
+    padding: 6px;
+    background: #FFFFFF;
+    border: 1px solid var(--nayara-border);
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(54, 17, 37, .14);
+}
+
+.n-platform-profile-menu-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--nayara-border);
+    margin-bottom: 4px;
+}
+
+.n-platform-profile-menu-head strong {
+    font-size: 12px;
+}
+
+.n-platform-profile-menu-head span {
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+    overflow-wrap: anywhere;
+}
+
+.n-platform-profile-menu a,
+.n-platform-profile-menu form button {
+    width: 100%;
+    display: block;
+    padding: 8px 10px;
+    color: var(--nayara-ink);
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    text-align: left;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.n-platform-profile-menu a:hover,
+.n-platform-profile-menu form button:hover {
+    background: var(--nayara-rose);
+    color: var(--nayara-brand);
+}
+
+.n-platform-hero {
+    min-height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 22px;
+    color: #FFFFFF;
+    background: linear-gradient(112deg, #8E1B5C 0%, #6B1242 64%, #4A0E2E 100%);
+    border-radius: 13px;
+    box-shadow: 0 6px 18px rgba(142, 27, 92, .13);
+    overflow: hidden;
+}
+
+.n-platform-hero-copy {
+    min-width: 0;
+    max-width: 760px;
+}
+
+.n-platform-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #F8D9E6;
+    font-size: 9.5px;
+    font-weight: 750;
+    letter-spacing: .12em;
+}
+
+.n-platform-eyebrow span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #7FE0B6;
+}
+
+.n-platform-hero h2 {
+    margin: 6px 0 3px;
+    color: #FFFFFF;
+    font-size: 19px !important;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.n-platform-hero p {
+    max-width: 700px;
+    margin: 0;
+    color: #F4DDE7;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.n-platform-hero-mark {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 52px;
+    display: grid;
+    place-items: center;
+    color: #F7D8E5;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.20);
+    border-radius: 14px;
+}
+
+.n-platform-hero-mark svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 11px;
+}
+
+.n-platform-kpi {
+    min-width: 0;
+    min-height: 104px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 12px 13px 10px;
+    color: var(--nayara-ink);
+    background: #FFFFFF;
+    border: 1px solid var(--nayara-border);
+    border-radius: 11px;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.n-platform-kpi:hover {
+    transform: translateY(-1px);
+    border-color: #D5A3B9;
+    box-shadow: 0 5px 14px rgba(142,27,92,.08);
+}
+
+.n-platform-kpi-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.n-platform-kpi-label {
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .045em;
+    text-transform: uppercase;
+}
+
+.n-platform-kpi-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: var(--nayara-brand);
+    background: var(--nayara-rose);
+}
+
+.n-platform-kpi-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-kpi-value {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--nayara-ink);
+    font-size: 21px;
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.n-platform-kpi-description {
+    display: block;
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+    line-height: 1.35;
+}
+
+.n-platform-kpi-arrow {
+    display: none;
+}
+
+.n-tone-success .n-platform-kpi-icon {
+    color: var(--nayara-success);
+    background: #E7F6EF;
+}
+
+.n-tone-warning .n-platform-kpi-icon {
+    color: var(--nayara-warning);
+    background: #FFF2DE;
+}
+
+.n-tone-rose .n-platform-kpi-icon {
+    color: var(--nayara-accent);
+    background: #FFD8D8;
+}
+
+.n-tone-blue .n-platform-kpi-value,
+.n-tone-primary .n-platform-kpi-value,
+.n-tone-wine .n-platform-kpi-value {
+    color: var(--nayara-brand);
+}
+
+.n-platform-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, .95fr);
+    gap: 13px;
+    align-items: stretch;
+}
+
+.n-platform-content-grid-secondary {
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, .9fr);
+}
+
+.n-platform-panel {
+    min-width: 0;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border: 1px solid var(--nayara-border);
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.n-platform-panel-header {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--nayara-border);
+}
+
+.n-platform-panel-header h2 {
+    margin: 0;
+    color: var(--nayara-ink);
+    font-size: 14px !important;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.n-platform-panel-header p {
+    margin: 2px 0 0;
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+}
+
+.n-platform-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+    color: var(--nayara-brand);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.n-platform-text-link:hover {
+    color: var(--nayara-brand-hover);
+    text-decoration: underline;
+}
+
+.n-platform-text-link span {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.n-platform-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.n-platform-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.n-platform-table th {
+    padding: 9px 12px;
+    color: var(--nayara-muted);
+    background: #FFF8FB;
+    border-bottom: 1px solid var(--nayara-border);
+    font-size: 9.5px;
+    font-weight: 750;
+    letter-spacing: .055em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.n-platform-table td {
+    padding: 10px 12px;
+    color: var(--nayara-ink);
+    border-bottom: 1px solid #F5E8EE;
+    font-size: 11.5px;
+    vertical-align: middle;
+}
+
+.n-platform-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.n-platform-table tbody tr:hover {
+    background: #FFFAFC;
+}
+
+.n-platform-table td strong {
+    display: block;
+    max-width: 210px;
+    overflow: hidden;
+    font-size: 11.5px;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.n-platform-table td small {
+    display: block;
+    max-width: 210px;
+    margin-top: 2px;
+    overflow: hidden;
+    color: var(--nayara-muted);
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.n-platform-table .is-right {
+    text-align: right;
+}
+
+.n-platform-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.n-platform-status.is-pending {
+    color: #97520A;
+    background: #FFF3DF;
+    border-color: #F5D9A8;
+}
+
+.n-platform-status.is-revision {
+    color: #8E1B5C;
+    background: #FFD8D8;
+    border-color: #F1C6D8;
+}
+
+.n-platform-status.is-approved {
+    color: #087A55;
+    background: #E7F6EF;
+    border-color: #B9E6D1;
+}
+
+.n-platform-status.is-rejected {
+    color: #B4234D;
+    background: #FDECEF;
+    border-color: #F5C5D0;
+}
+
+.n-platform-status.is-neutral {
+    color: #5F5260;
+    background: #F4F0F3;
+    border-color: #E7DDE3;
+}
+
+.n-platform-row-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 27px;
+    padding: 4px 9px;
+    color: #FFFFFF;
+    background: var(--nayara-brand);
+    border-radius: 7px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.n-platform-row-action:hover {
+    background: var(--nayara-brand-hover);
+}
+
+.n-platform-count-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    color: var(--nayara-muted);
+    background: #F6F1F4;
+    border: 1px solid #E9DDE4;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.n-platform-count-pill.has-items {
+    color: #97520A;
+    background: #FFF3DF;
+    border-color: #F5D9A8;
+}
+
+.n-platform-attention-list {
+    display: flex;
+    flex-direction: column;
+    padding: 4px 12px 10px;
+}
+
+.n-platform-attention-item {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 2px;
+    border-bottom: 1px solid #F5E8EE;
+    color: var(--nayara-ink);
+    text-decoration: none;
+}
+
+.n-platform-attention-item:last-child {
+    border-bottom: 0;
+}
+
+.n-platform-attention-item:hover .n-platform-attention-copy strong {
+    color: var(--nayara-brand);
+}
+
+.n-platform-attention-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: var(--nayara-brand);
+    background: var(--nayara-rose);
+}
+
+.n-platform-attention-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-attention-icon.is-warning {
+    color: #97520A;
+    background: #FFF3DF;
+}
+
+.n-platform-attention-icon.is-rose {
+    color: #8E1B5C;
+    background: #FFD8D8;
+}
+
+.n-platform-attention-icon.is-danger {
+    color: #B4234D;
+    background: #FDECEF;
+}
+
+.n-platform-attention-copy {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.n-platform-attention-copy strong {
+    color: var(--nayara-ink);
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.n-platform-attention-copy small {
+    color: var(--nayara-muted);
+    font-size: 10px;
+    line-height: 1.35;
+}
+
+.n-platform-attention-arrow {
+    color: #A68A99;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.n-platform-empty {
+    min-height: 170px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    text-align: center;
+}
+
+.n-platform-empty-compact {
+    min-height: 150px;
+}
+
+.n-platform-empty-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 8px;
+    color: var(--nayara-brand);
+    background: var(--nayara-rose);
+    border-radius: 10px;
+}
+
+.n-platform-empty-icon.is-success {
+    color: var(--nayara-success);
+    background: #E7F6EF;
+}
+
+.n-platform-empty-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.n-platform-empty strong {
+    color: var(--nayara-ink);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.n-platform-empty p {
+    max-width: 310px;
+    margin: 3px 0 0;
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+    line-height: 1.45;
+}
+
+.n-platform-trend-chart {
+    min-height: 166px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: end;
+    gap: 10px;
+    padding: 18px 18px 10px;
+}
+
+.n-platform-trend-column {
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.n-platform-trend-column > strong {
+    color: var(--nayara-ink);
+    font-size: 10px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.n-platform-trend-track {
+    width: min(100%, 34px);
+    height: 94px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #F8EDF2;
+    border-radius: 7px 7px 3px 3px;
+}
+
+.n-platform-trend-track span {
+    width: 100%;
+    min-height: 2px;
+    display: block;
+    background: linear-gradient(180deg, #A6266E 0%, #8E1B5C 100%);
+    border-radius: 7px 7px 2px 2px;
+    transition: height .2s ease;
+}
+
+.n-platform-trend-day {
+    color: var(--nayara-ink);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.n-platform-trend-column small {
+    color: var(--nayara-muted);
+    font-size: 9px;
+}
+
+.n-platform-trend-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #FFFAFC;
+    border-top: 1px solid var(--nayara-border);
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+}
+
+.n-platform-trend-footer strong {
+    color: var(--nayara-brand);
+    font-size: 11.5px;
+}
+
+.n-platform-period-label {
+    padding: 4px 8px;
+    color: var(--nayara-brand);
+    background: var(--nayara-rose);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.n-platform-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 8px 14px 12px;
+    list-style: none;
+}
+
+.n-platform-activity-list li {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    padding: 8px 0 9px;
+}
+
+.n-platform-activity-list li:not(:last-child)::before {
+    position: absolute;
+    top: 20px;
+    bottom: -2px;
+    left: 4px;
+    width: 1px;
+    background: var(--nayara-border);
+    content: "";
+}
+
+.n-platform-activity-dot {
+    position: relative;
+    z-index: 1;
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    margin-top: 4px;
+    background: var(--nayara-accent);
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #E7B8CB;
+}
+
+.n-platform-activity-list li > div {
+    min-width: 0;
+}
+
+.n-platform-activity-list strong {
+    display: block;
+    color: var(--nayara-ink);
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.n-platform-activity-list p {
+    margin: 2px 0;
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+}
+
+.n-platform-activity-list small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #947F8B;
+    font-size: 9.5px;
+}
+
+.n-platform-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 2px 0;
+    border-top: 1px solid var(--nayara-border);
+    color: var(--nayara-muted);
+    font-size: 10.5px;
+}
+
+.n-platform-footer a {
+    color: var(--nayara-brand);
+    font-size: 10.5px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.n-platform-footer a span {
+    font-size: 15px;
+}
+
+.n-platform-isolation {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 700;
+}
+
+.n-platform-isolation.is-active {
+    color: #087A55;
+    background: #E7F6EF;
+}
+
+.n-platform-isolation.is-pending {
+    color: #97520A;
+    background: #FFF3DF;
+}
+
+/* Hover variants retain their interaction state after the brand-token migration. */
+#main-content [class~="hover:bg-[#8E1B5C]"]:hover,
+.n-content [class~="hover:bg-[#8E1B5C]"]:hover,
+#main-content [class~="hover:bg-[#A6266E]"]:hover,
+.n-content [class~="hover:bg-[#A6266E]"]:hover {
+    background-color: var(--nayara-brand-hover) !important;
+}
+
+#main-content [class~="hover:bg-[#6B1242]"]:hover,
+.n-content [class~="hover:bg-[#6B1242]"]:hover {
+    background-color: var(--nayara-brand-deep) !important;
+}
+
+#main-content [class~="hover:text-[#8E1B5C]"]:hover,
+.n-content [class~="hover:text-[#8E1B5C]"]:hover,
+#main-content [class~="hover:text-[#A6266E]"]:hover,
+.n-content [class~="hover:text-[#A6266E]"]:hover {
+    color: var(--nayara-brand-hover) !important;
+}
+
+/* Responsive layout */
+@media (max-width: 1200px) {
+    .n-platform-kpi-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .n-platform-content-grid,
+    .n-platform-content-grid-secondary {
+        grid-template-columns: minmax(0, 1.3fr) minmax(280px, .9fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    #main-content {
+        padding: 18px 18px 28px;
+    }
+
+    .n-content {
+        padding: 18px 18px 28px !important;
+    }
+
+    .n-platform-kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .n-platform-content-grid,
+    .n-platform-content-grid-secondary {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    #main-content {
+        padding: 14px 12px 24px;
+    }
+
+    .n-platform-menu-toggle {
+        display: grid;
+    }
+
+    .n-platform-header {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .n-platform-heading {
+        flex: 1;
+    }
+
+    .n-platform-heading h1 {
+        font-size: 17px !important;
+    }
+
+    .n-platform-heading p {
+        font-size: 10px;
+    }
+
+    .n-platform-heading-icon {
+        display: none;
+    }
+
+    .n-platform-profile-copy,
+    .n-platform-chevron {
+        display: none;
+    }
+
+    .n-platform-profile-trigger {
+        padding-left: 8px;
+    }
+
+    .n-platform-hero {
+        min-height: 100px;
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .n-platform-hero h2 {
+        font-size: 16px !important;
+    }
+
+    .n-platform-hero p {
+        font-size: 10.5px;
+    }
+
+    .n-platform-hero-mark {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .n-platform-hero-mark svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .n-platform-kpi-grid {
+        gap: 8px;
+    }
+
+    .n-platform-kpi {
+        min-height: 94px;
+        padding: 10px;
+    }
+
+    .n-platform-kpi-label {
+        font-size: 9px;
+    }
+
+    .n-platform-kpi-value {
+        font-size: 18px;
+    }
+
+    .n-platform-kpi-description {
+        font-size: 9.5px;
+    }
+
+    .n-platform-panel-header {
+        padding: 10px;
+    }
+
+    .n-platform-trend-chart {
+        gap: 5px;
+        padding: 14px 10px 9px;
+    }
+
+    .n-platform-trend-track {
+        width: min(100%, 24px);
+    }
+
+    .n-platform-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .n-platform-kpi-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .n-platform-kpi {
+        min-height: 90px;
+    }
+
+    .n-platform-kpi-value {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
